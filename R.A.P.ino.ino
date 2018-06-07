@@ -1,6 +1,3 @@
- #include <LiquidCrystal.h>
-LiquidCrystal lcd(22, 23, 45, 44, 47, 46);
-
 #include <DHT.h>
 
 //Constants
@@ -67,7 +64,6 @@ pinMode(buzzer, OUTPUT);
 
 dht.begin();
 lcd.begin(16, 2);
-Serial.print("R.A.P. V1.0");
 delay(2000);
 } 
 
@@ -84,23 +80,10 @@ if(temp > 48.00)
 {
  suna();
 }
-lcd.setCursor(0,1);
- lcd.print(temp);
-  lcd.print((char)223);
-  lcd.print("C"); 
-  lcd.setCursor(10,1);
   printVolts();
   if(Serial.available() > 0){
-    
-    lcd.setCursor(0,0);
-    lcd.write("Bluetooth: ON ");
     info = Serial.read();
     state = 0; 
-  }
-  else{
-     
-    lcd.setCursor(0,0);
-    lcd.write("Bluetooth: "); 
   }
   digitalWrite(led, LOW);
   if(info == '1'){                
@@ -439,12 +422,8 @@ distanceD= durationD*0.034/2;
 
 void printVolts()
 {
-  int sensorValue = analogRead(A8); //read the A0 pin value
-  float voltage = sensorValue * (5.00 / 1023.00) * 2; //convert the value to a true voltage.
-  lcd.setCursor(9,1);
-  
-  lcd.print(voltage); //print the voltage to LCD
-  lcd.print(" V");
+  int sensorValue = analogRead(A8); //citeste valoarea A0
+  float voltage = sensorValue * (5.00 / 1023.00) * 2; //valoare -> voltaj
 }
 void suna()
 {
