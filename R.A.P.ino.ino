@@ -1,6 +1,3 @@
- #include <LiquidCrystal.h>
-LiquidCrystal lcd(22, 23, 45, 44, 47, 46);
-
 #include <DHT.h>
 
 //Constants
